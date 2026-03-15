@@ -295,6 +295,85 @@ async def upload_voice_note(
 
     return _note_to_response(note)
 
+
+@router.post("/voice-note", response_model=FullNoteResponse, status_code=202)
+async def post_voice_note_json(
+    payload: VoiceNoteUploadRequest,
+    background_tasks: BackgroundTasks,
+    store: CompositeStore = Depends(get_store),
+    deepgram=Depends(get_deepgram),
+    structuring=Depends(get_structuring),
+    audio_processor=Depends(get_audio_processor),
+    dedup=Depends(get_dedup),
+    event_logger: EventLogger = Depends(get_event_logger),
+):
+    """Task 1 compliance: Create note from an audio URL instead of direct upload."""
+    if not payload.audio_url:
+        raise HTTPException(status_code=400, detail="audio_url is required for this endpoint")
+
+    # 1. Download audio content
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(payload.audio_url, timeout=30.0)
+            resp.raise_for_status()
+            content = resp.content
+    except Exception as e:
+        log.error("audio_download_failed", url=payload.audio_url, error=str(e))
+        raise HTTPException(status_code=400, detail=f"Failed to download audio from URL: {e}")
+
+    # 2. Validation
+    if len(content) == 0:
+        raise HTTPException(status_code=400, detail="Downloaded file is empty")
+    if len(content) > settings.max_file_bytes:
+        raise HTTPException(status_code=413, detail="File exceeds maximum size")
+
+    detected_format = audio_processor.validate_format(content)
+    if not detected_format:
+        raise HTTPException(status_code=400, detail="Unrecognized audio format")
+
+    # 3. Create note_id and start time
+    note_id = str(uuid.uuid4())
+    started_at = datetime.now(timezone.utc)
+
+    # 4. Create initial note record
+    note = VoiceNote(
+        id=note_id,
+        device_id=payload.device_id,
+        timestamp=payload.timestamp or started_at,
+        lat=payload.lat,
+        lng=payload.lng,
+        created_at=started_at,
+        audio_filename=f"download_{note_id[:8]}.{detected_format}",
+        audio_format=detected_format,
+        status="received",
+    )
+    await store.save(note)
+
+    # 5. Log and Persist
+    await event_logger.log_event(PipelineEvent(note_id=note_id, event_type="received"))
+    try:
+        audio_stored_path = safe_join(settings.audio_storage_dir, f"{note_id}.{detected_format}")
+        Path(audio_stored_path).write_bytes(content)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid storage path")
+
+    # 6. Enqueue Background Task
+    background_tasks.add_task(
+        _process_pipeline,
+        note,
+        content,
+        detected_format,
+        store,
+        deepgram,
+        structuring,
+        audio_processor,
+        dedup,
+        event_logger,
+        started_at
+    )
+
+    return _note_to_response(note)
+
 @router.get("/voice-notes", response_model=NoteListResponse)
 async def list_voice_notes(
     page: int = 1,
