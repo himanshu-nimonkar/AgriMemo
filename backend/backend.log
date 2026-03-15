@@ -1,0 +1,103 @@
+INFO:     Started server process [75297]
+INFO:     Waiting for application startup.
+{"note_count": 17, "event": "json_store_loaded", "level": "info", "timestamp": "2026-03-15T01:44:14.144400Z"}
+{"notes_loaded": 17, "event": "composite_store_initialized", "level": "info", "timestamp": "2026-03-15T01:44:14.145366Z"}
+{"environment": "development", "notes_loaded": 17, "version": "1.0.0", "event": "agrimemo_started", "level": "info", "timestamp": "2026-03-15T01:44:14.157609Z"}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:61649 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61683 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61683 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61718 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61718 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61719 - "GET /voice-notes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61723 - "GET /voice-notes?page_size=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61736 - "GET /provider HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61737 - "GET /voice-notes?page=1&page_size=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61738 - "DELETE /voice-notes/f28e0e75-57de-4ac5-a5e7-264a8c475d26 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61739 - "DELETE /voice-notes/8323fcd5-1b6f-49d3-b144-dc3d9204fe10 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61740 - "DELETE /voice-notes/0d2f5b47-d125-41bf-8b92-ee0812842461 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61741 - "DELETE /voice-notes/d51323c5-177e-4746-9821-ba4e925e5728 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61742 - "DELETE /voice-notes/9e25a2f7-c71b-44a2-bdff-3c28d844d9b3 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61743 - "DELETE /voice-notes/b94f0167-d303-4dae-8b6e-3d4d31722ae3 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61744 - "DELETE /voice-notes/6aee5189-e190-4232-9be9-f61e464d6ae9 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61745 - "DELETE /voice-notes/77e70102-f9c5-4a89-8d2d-20e9a4c721fe HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61746 - "DELETE /voice-notes/24f81b84-df1d-4980-8589-54003e36652e HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61747 - "DELETE /voice-notes/569e979d-fc0a-48d5-8b3a-f3b7406726ae HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61748 - "DELETE /voice-notes/9021bfa9-2bf6-4b75-9857-c7233a2705be HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61749 - "DELETE /voice-notes/d18145ec-6910-440e-a666-e55048939074 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61750 - "DELETE /voice-notes/489a06a3-d4bc-470a-8b98-5bf6d98b7d34 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61751 - "DELETE /voice-notes/ee4fc567-d4fe-47d5-963f-4d4631853242 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61752 - "DELETE /voice-notes/d120bdda-3239-4b15-9a1a-74ccb8c660dc HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61753 - "DELETE /voice-notes/1c433cc8-5aef-4e6e-9d23-dbe2721d7a31 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61754 - "DELETE /voice-notes/e623c1c6-ddb9-48d1-aa96-6aa31cce9891 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61755 - "GET /voice-notes HTTP/1.1" 200 OK
+{"note_id": "0d7e98f7-98c3-4062-8b99-9fcef8393082", "duration_ms": 7849, "note_type": "note", "is_duplicate": false, "event": "note_processed", "level": "info", "timestamp": "2026-03-15T01:54:16.818510Z"}
+INFO:     127.0.0.1:61756 - "POST /voice-note/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61759 - "GET /voice-notes/0d7e98f7-98c3-4062-8b99-9fcef8393082 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61760 - "GET /voice-notes/00000000-0000-4000-a000-000000000000 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61761 - "GET /voice-notes?page_size=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61762 - "GET /voice-notes?include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61763 - "GET /voice-notes?low_confidence_only=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61764 - "GET /voice-notes?search=test HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61765 - "GET /voice-notes?page=0 HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:61766 - "GET /voice-notes?page_size=200 HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:61767 - "POST /voice-note/upload HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:61768 - "POST /voice-note/upload HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:61769 - "DELETE /voice-notes/not-a-uuid HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:61770 - "DELETE /voice-notes/0d7e98f7-98c3-4062-8b99-9fcef8393082 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:61771 - "GET /voice-notes/0d7e98f7-98c3-4062-8b99-9fcef8393082 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61795 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61795 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61800 - "GET /provider HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61799 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61806 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61811 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61815 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61821 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61825 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61829 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61834 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61840 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61865 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61865 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61867 - "GET /provider HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61865 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61872 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61875 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62380 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62380 - "GET /voice-notes?page=1&page_size=20&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62384 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62384 - "GET /voice-notes?page=1&page_size=20&low_confidence_only=true&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62384 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62384 - "GET /voice-notes?page=1&page_size=20&low_confidence_only=true&include_duplicates=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62389 - "GET /provider HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62389 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfb HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62395 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62395 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbev HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevy HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevye HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevyeh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevyeh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevyehh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevyehhe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false&search=fvgfbevye HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62399 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62399 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62393 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62521 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62809 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62809 - "GET /voice-notes?page=1&page_size=20&include_duplicates=false HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+{"event": "agrimemo_shutdown", "level": "info", "timestamp": "2026-03-15T03:33:12.136134Z"}
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75297]
