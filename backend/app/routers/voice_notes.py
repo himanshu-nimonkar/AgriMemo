@@ -430,6 +430,15 @@ async def stream_voice_note_audio(
     if not audio_path:
         raise HTTPException(status_code=404, detail="Audio file not found (may have been cleaned up)")
 
+    # Normalize and validate that the audio path is within the configured storage directory
+    audio_storage_dir_resolved = audio_storage_dir.resolve()
+    resolved_audio_path = audio_path.resolve()
+    try:
+        resolved_audio_path.relative_to(audio_storage_dir_resolved)
+    except ValueError:
+        # Path escapes the configured storage directory; treat as invalid
+        raise HTTPException(status_code=400, detail="Invalid audio file path")
+
     # Map extension to MIME type
     mime_map = {
         "wav": "audio/wav",
@@ -439,11 +448,11 @@ async def stream_voice_note_audio(
         "flac": "audio/flac",
         "webm": "audio/webm",
     }
-    ext = audio_path.suffix.lstrip(".")
+    ext = resolved_audio_path.suffix.lstrip(".")
     media_type = mime_map.get(ext, "audio/octet-stream")
 
     return FileResponse(
-        path=str(audio_path),
+        path=str(resolved_audio_path),
         media_type=media_type,
         filename=note.audio_filename,
     )
