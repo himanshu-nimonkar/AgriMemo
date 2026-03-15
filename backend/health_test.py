@@ -6,9 +6,9 @@ from app.services.structuring_engine import StructuringEngine
 import httpx
 
 async def check():
-    print(f"Deepgram Key: len={len(settings.deepgram_api_key)} val={settings.deepgram_api_key[:4]}...{settings.deepgram_api_key[-4:]}")
-    print(f"Cloudflare Token: len={len(settings.cloudflare_api_token)} val={settings.cloudflare_api_token[:4]}...{settings.cloudflare_api_token[-4:]}")
-    print(f"Cloudflare Account: {settings.cloudflare_account_id}")
+    print(f"Deepgram Key: configured={bool(settings.deepgram_api_key)} len={len(settings.deepgram_api_key) if settings.deepgram_api_key else 0} (value redacted)")
+    print(f"Cloudflare Token: configured={bool(settings.cloudflare_api_token)} len={len(settings.cloudflare_api_token) if settings.cloudflare_api_token else 0} (value redacted)")
+    print(f"Cloudflare Account ID: configured={bool(settings.cloudflare_account_id)} len={len(settings.cloudflare_account_id) if settings.cloudflare_account_id else 0} (value redacted)")
 
     # deepgram check
     try:
