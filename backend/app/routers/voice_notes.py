@@ -392,11 +392,15 @@ async def delete_voice_note(
             PipelineEvent(note_id=note_id, event_type="deleted")
         )
         # Also delete persisted audio file if it exists
-        audio_storage_dir = Path(settings.audio_storage_dir)
+        audio_storage_dir = Path(settings.audio_storage_dir).resolve()
         for ext in ["wav", "mp3", "ogg", "m4a", "flac", "webm", note.audio_format or ""]:
             candidate = (audio_storage_dir / f"{note_id}.{ext}").resolve()
             # Ensure the resolved path is within the configured audio storage directory
-            if audio_storage_dir in candidate.parents and candidate.is_file():
+            try:
+                candidate.relative_to(audio_storage_dir)
+            except ValueError:
+                continue
+            if candidate.is_file():
                 candidate.unlink(missing_ok=True)
                 break
 
