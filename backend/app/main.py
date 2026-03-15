@@ -118,15 +118,12 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(Exception)
     async def generic_exception_handler(request: Request, exc: Exception):
-        log.error("unhandled_exception", error=str(exc), path=str(request.url))
-        if settings.is_production:
-            return JSONResponse(
-                status_code=500,
-                content={"error": "Internal server error", "detail": None},
-            )
+        # Log full exception details and traceback on the server side only.
+        log.exception("unhandled_exception", error=str(exc), path=str(request.url))
+        # Return a generic error response without exposing internal details.
         return JSONResponse(
             status_code=500,
-            content={"error": str(exc), "detail": traceback.format_exc()},
+            content={"error": "Internal server error", "detail": None},
         )
 
     return app
