@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useUpload } from '../../hooks/useUpload'
 import { useAppStore } from '../../store/appStore'
 import { PipelineStatus } from '../pipeline/PipelineStatus'
@@ -18,7 +18,9 @@ export function AudioUploader() {
     handleDragLeave,
     handleDrop,
     reset,
+    processUrlUpload,
   } = useUpload()
+  const [url, setUrl] = useState('')
 
   const { view, pendingAction, setPendingAction } = useAppStore()
 
@@ -155,6 +157,27 @@ export function AudioUploader() {
                 <span className="material-symbols-outlined text-sm">report</span> {error}
               </div>
             )}
+          </div>
+
+          <div className="mt-8 flex flex-col md:flex-row gap-4 items-center clay-card p-6 rounded-3xl bg-white/40">
+            <div className="flex-grow w-full relative">
+              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-earth/30">link</span>
+              <input
+                type="url"
+                placeholder="Or paste an audio URL here..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border-2 border-transparent focus:border-brand/30 outline-none font-medium text-earth transition-all shadow-sm"
+              />
+            </div>
+            <button
+              onClick={() => { processUrlUpload(url); setUrl('') }}
+              disabled={!url || isUploading}
+              className="px-8 py-4 bg-brand text-white rounded-2xl font-extrabold flex items-center gap-2 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100 whitespace-nowrap"
+            >
+              <span className="material-symbols-outlined">rocket_launch</span>
+              Process URL
+            </button>
           </div>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-0">

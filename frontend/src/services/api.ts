@@ -42,6 +42,23 @@ export async function uploadVoiceNote(
   return data
 }
 
+export async function uploadVoiceNoteByUrl(
+  audioUrl: string,
+  deviceId: string,
+  timestamp?: string,
+  lat?: number,
+  lng?: number
+): Promise<FullNoteResponse> {
+  const { data } = await api.post<FullNoteResponse>('/voice-note', {
+    audio_url: audioUrl,
+    device_id: deviceId,
+    timestamp,
+    lat,
+    lng,
+  })
+  return data
+}
+
 export async function listVoiceNotes(filters: Partial<NoteFilters> = {}): Promise<NoteListResponse> {
   const params: Record<string, unknown> = {
     page: filters.page ?? 1,

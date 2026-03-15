@@ -531,12 +531,12 @@ async def stream_voice_note_audio(
         "flac": "audio/flac",
         "webm": "audio/webm",
     }
-    p = Path(audio_path)
-    ext = p.suffix.lstrip(".")
+    resolved_path = Path(audio_path)
+    ext = resolved_path.suffix.lstrip(".")
     media_type = mime_map.get(ext, "audio/octet-stream")
 
     return FileResponse(
-        path=str(p),
+        path=str(resolved_path),
         media_type=media_type,
         filename=note.audio_filename,
     )

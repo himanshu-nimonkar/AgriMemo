@@ -3,7 +3,7 @@
  * File validation + upload state machine.
  */
 import { useState, useCallback } from 'react'
-import { uploadVoiceNote } from '../services/api'
+import { uploadVoiceNote, uploadVoiceNoteByUrl } from '../services/api'
 import { useAppStore } from '../store/appStore'
 import type { FullNoteResponse } from '../types'
 
@@ -106,6 +106,51 @@ export function useUpload() {
     }
   }, [setUploading, setUploadError, setUploadNoteId])
 
+  const processUrlUpload = useCallback(async (url: string, deviceId = 'web-app') => {
+    if (!url) return
+
+    setUploading(true)
+    setUploadError(null)
+    setResult(null)
+    setUploadNoteId(null)
+
+    try {
+      const timestamp = new Date().toISOString()
+      
+      let lat: number | undefined
+      let lng: number | undefined
+
+      try {
+        const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 })
+        })
+        lat = pos.coords.latitude
+        lng = pos.coords.longitude
+      } catch (geoErr) {
+        console.warn('Geolocation capture failed or denied:', geoErr)
+      }
+
+      await uploadVoiceNoteByUrl(url, deviceId, timestamp, lat, lng)
+      
+      useAppStore.getState().navigateTo('history')
+      useAppStore.getState().resetUpload()
+      
+      setResult(null)
+      setSelectedFile(null)
+      setUploadNoteId(null)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const axiosErr = err as { response?: { data?: { detail?: string } } }
+        const msg = axiosErr.response?.data?.detail ?? err.message ?? 'URL Process failed'
+        setUploadError(msg)
+      } else {
+        setUploadError('URL Process failed. Please try again.')
+      }
+    } finally {
+      setUploading(false)
+    }
+  }, [setUploading, setUploadError, setUploadNoteId])
+
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     setIsDragging(true)
@@ -134,6 +179,7 @@ export function useUpload() {
     selectedFile,
     handleFile,
     processUpload,
+    processUrlUpload,
     handleDragOver,
     handleDragLeave,
     handleDrop,
