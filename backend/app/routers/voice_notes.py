@@ -32,7 +32,7 @@ from app.services.deepgram_service import AllRetriesExhaustedError, DeepgramAuth
 from app.services.event_logger import EventLogger, PipelineEvent
 from app.storage.composite_store import CompositeStore
 from app.utils.audio_utils import sanitize_filename
-from app.utils.security import is_valid_uuid_v4, sanitize_search_query, safe_join
+from app.utils.security import is_valid_uuid_v4, sanitize_search_query, safe_join, validate_url
 
 log = structlog.get_logger()
 
@@ -312,6 +312,12 @@ async def post_voice_note_json(
         raise HTTPException(status_code=400, detail="audio_url is required for this endpoint")
 
     # 1. Download audio content
+    # Validate URL to prevent SSRF
+    allow_private = settings.app_env == "development"
+    if not validate_url(payload.audio_url, allow_private=allow_private):
+        log.error("ssrf_blocked", url=payload.audio_url)
+        raise HTTPException(status_code=400, detail="Invalid audio_url provided.")
+
     try:
         async with httpx.AsyncClient() as client:
             resp = await client.get(payload.audio_url, timeout=30.0)
