@@ -11,7 +11,7 @@ import type {
   NoteFilters,
 } from '../types'
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || (window.location.protocol === 'https:' ? 'https://localhost:8000' : 'http://localhost:8000')
 
 export const api = axios.create({
   baseURL: BASE_URL,

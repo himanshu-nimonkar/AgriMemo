@@ -36,6 +36,7 @@ node_modules/
 frontend/dist/
 npm-debug.log*
 .pnpm-debug.log*
+.vite/
 
 # OS
 .DS_Store
