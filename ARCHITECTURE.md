@@ -29,7 +29,9 @@ The primary record is a `VoiceNote` object:
 - `structured_schema_a`: Predefined agricultural fields
 - `structured_schema_b`: Dynamic/AI-discovered fields
 - `status`: [received, transcribing, structuring, stored, failed]
-- `geo`: { lat, lng } metadata
+- `lat`: Optional latitude (float)
+- `lng`: Optional longitude (float)
+- `geo`: Metadata including location status
 
 ## Scaling Considerations
 
