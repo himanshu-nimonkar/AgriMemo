@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # No port exposure in production — only accessible via nginx/cloudflared
+    expose:
+      - "8000"
+    env_file:
+      - ./backend/.env.prod
+    volumes:
+      - agrimemo_data:/app/data
+    restart: always
+
+  frontend:
+    expose:
+      - "80"
+    restart: always
+
+  cloudflared:
+    restart: always
+
+volumes:
+  agrimemo_data:
+    driver: local
