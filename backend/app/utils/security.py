@@ -3,6 +3,7 @@ AgriMemo — Security Utilities
 Input sanitizers and validators.
 """
 import os
+import re
 
 UUID_V4_PATTERN = re.compile(
     r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"

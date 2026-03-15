@@ -5,7 +5,7 @@ import { NoteCard } from './NoteCard'
 import { NoteFilters } from './NoteFilters'
 
 export function NotesList() {
-  const { filters, setFilters, navigateTo } = useAppStore()
+  const { filters, setFilters, navigateTo, setPendingAction } = useAppStore()
   const [search, setSearch] = useState('')
   const [isFiltersOpen, setIsFiltersOpen] = useState(false)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
@@ -109,14 +109,6 @@ export function NotesList() {
           <div className="overflow-y-auto pr-1 custom-scroll">
             <NoteFilters />
           </div>
-          <div className="pt-6 border-t border-[#e5e1d8] mt-4">
-             <button 
-               onClick={() => setIsFiltersOpen(false)}
-               className="clay-button w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2"
-             >
-               Apply Filters
-             </button>
-          </div>
         </aside>
       </div>
 
@@ -208,7 +200,17 @@ export function NotesList() {
                   <span className="material-symbols-outlined text-[48px]">inventory_2</span>
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#2d3a23] mb-2">No notes found</h3>
-                <p className="text-earth/60 font-medium">Looks like you haven't recorded any field notes matching your criteria.</p>
+                <p className="text-earth/60 font-medium mb-8">Looks like you haven't recorded any field notes matching your criteria.</p>
+                <button 
+                  onClick={() => {
+                    setPendingAction('select-file')
+                    navigateTo('upload')
+                  }}
+                  className="clay-button px-8 py-3 rounded-xl font-bold flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined">add_circle</span>
+                  Add Your First Note
+                </button>
               </div>
           )}
 

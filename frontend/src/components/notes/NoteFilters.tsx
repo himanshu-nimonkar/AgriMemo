@@ -21,6 +21,16 @@ export function NoteFilters() {
     setFilters({ start_date: localStartDate || undefined, end_date: localEndDate || undefined, page: 1 })
   }
 
+  // Auto-apply on mobile or as a refinement
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localStartDate !== (filters.start_date || '') || localEndDate !== (filters.end_date || '')) {
+        applyDateRange()
+      }
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [localStartDate, localEndDate])
+
   return (
     <div className="space-y-8">
       {/* Note Type */}
@@ -81,7 +91,7 @@ export function NoteFilters() {
           <button
             onClick={applyDateRange}
             disabled={localStartDate === (filters.start_date || '') && localEndDate === (filters.end_date || '')}
-            className="w-full py-2 bg-brand text-white rounded-xl text-sm font-bold hover:bg-[#328e0f] transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hidden lg:block w-full py-2 bg-brand text-white rounded-xl text-sm font-bold hover:bg-[#328e0f] transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Apply Date Range
           </button>

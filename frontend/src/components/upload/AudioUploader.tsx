@@ -1,5 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useUpload } from '../../hooks/useUpload'
+import { useAppStore } from '../../store/appStore'
 import { PipelineStatus } from '../pipeline/PipelineStatus'
 import { ResultPanel } from '../pipeline/ResultPanel'
 
@@ -18,6 +19,17 @@ export function AudioUploader() {
     handleDrop,
     reset,
   } = useUpload()
+
+  const { view, pendingAction, setPendingAction } = useAppStore()
+
+  useEffect(() => {
+    if (view === 'upload' && pendingAction === 'select-file') {
+      setPendingAction(null)
+      setTimeout(() => {
+        fileInputRef.current?.click()
+      }, 100)
+    }
+  }, [view, pendingAction, setPendingAction])
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

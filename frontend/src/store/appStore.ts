@@ -34,6 +34,10 @@ interface AppState {
   filters: Partial<NoteFilters>
   setFilters: (filters: Partial<NoteFilters>) => void
   resetFilters: () => void
+
+  // Actions
+  pendingAction: 'select-file' | null
+  setPendingAction: (action: 'select-file' | null) => void
 }
 
 const DEFAULT_UPLOAD: UploadState = {
@@ -67,4 +71,7 @@ export const useAppStore = create<AppState>((set) => ({
     set((s) => ({ filters: { ...s.filters, ...filters } })),
   resetFilters: () =>
     set({ filters: { page: 1, page_size: 10, include_duplicates: true } }),
+
+  pendingAction: null,
+  setPendingAction: (pendingAction) => set({ pendingAction }),
 }))
