@@ -13,6 +13,7 @@ class VoiceNoteUploadRequest(BaseModel):
     timestamp: Optional[datetime] = None  # If omitted, server uses utcnow()
     lat: Optional[float] = None
     lng: Optional[float] = None
+    audio_url: Optional[str] = None
 
     @field_validator("device_id")
     @classmethod

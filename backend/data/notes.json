@@ -1,5 +1,95 @@
 {
   "version": "1.0",
-  "last_updated": "2026-03-15T16:25:10.905851+00:00",
-  "notes": {}
+  "last_updated": "2026-03-15T17:45:37.407872+00:00",
+  "notes": {
+    "2388cd1d-e96a-4819-9367-42ccbaf4d701": {
+      "id": "2388cd1d-e96a-4819-9367-42ccbaf4d701",
+      "device_id": "web-app",
+      "timestamp": "2026-03-15T17:45:29.038000Z",
+      "created_at": "2026-03-15T17:45:29.216500Z",
+      "lat": 38.54538531198422,
+      "lng": -121.7630869307169,
+      "audio_filename": "405_Orchard_Park_Dr__Apt_405.mp3",
+      "audio_format": "mp3",
+      "audio_duration_seconds": 45.744,
+      "transcript": "I am currently at the North Orchard checking the apple trees. It looks like we have a minor aphid infestation starting on the lower branches of Row 12. I'd like to schedule a spraying for tomorrow morning, preferably before 10AM, using organic pesticides from the shed. Also a reminder for the maintenance team that tractor number four has a slight hydraulic leak in the left arm. We need to get this fixed before the harvest starts next Monday. Please order a new seal jet if we don't have one in stock. Also, observation from the South Field, soil moisture levels are looking great after the rain last night, about 75%. Let's disable the automatic irrigation for the next forty eight hours to save on water usage.",
+      "transcript_confidence": 0.99925464,
+      "low_confidence": false,
+      "transcription_attempts": 1,
+      "transcription_error": null,
+      "structured_schema_a": {
+        "type": "task",
+        "title": "Spray organic pesticides on Row 12",
+        "description": null,
+        "context": "North Orchard, minor aphid infestation",
+        "scheduled_time": "2024-03-16T09:00:00Z",
+        "due_date": null,
+        "assignee": null,
+        "priority": "high",
+        "location": "North Orchard",
+        "tags": [
+          "pesticide",
+          "spraying",
+          "Row 12"
+        ]
+      },
+      "structured_schema_b": {
+        "type": "field_inspection",
+        "agri_relevant": true,
+        "rejection_reason": null,
+        "entities": {
+          "location": [
+            "North Orchard",
+            "Row 12",
+            "South Field"
+          ],
+          "equipment": [
+            "tractor number four"
+          ],
+          "crops": [
+            "apple trees"
+          ],
+          "people": [],
+          "times": [
+            "tomorrow morning",
+            "before 10AM",
+            "next Monday"
+          ],
+          "materials": [
+            "organic pesticides",
+            "seal jet"
+          ]
+        },
+        "intent": {
+          "action": [
+            "schedule spraying",
+            "disable automatic irrigation"
+          ],
+          "observation": [
+            "minor aphid infestation",
+            "soil moisture levels looking great"
+          ]
+        },
+        "urgency": "high",
+        "confidence": 0.9,
+        "equipment_issue": "hydraulic leak in the left arm",
+        "field_issue": "aphid infestation",
+        "weather_info": {
+          "event": "rain",
+          "date": "last night",
+          "level": "75%"
+        },
+        "action_required": [
+          "order new seal jet",
+          "fix tractor number four"
+        ]
+      },
+      "note_type": "task",
+      "status": "stored",
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "pipeline_duration_ms": 8191,
+      "errors": []
+    }
+  }
 }
