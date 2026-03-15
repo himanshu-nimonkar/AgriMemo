@@ -124,7 +124,7 @@ export function StatusView() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             ) : isDegraded ? (
-              <span className="text-3xl font-black">⚠</span>
+              <span className="material-symbols-outlined text-3xl">report</span>
             ) : (
               <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />

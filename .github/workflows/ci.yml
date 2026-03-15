@@ -28,7 +28,7 @@ jobs:
         working-directory: ./backend
         env:
           DEEPGRAM_API_KEY: "dummy-key"
-          CLOUDFLARE_AUTH_TOKEN: "dummy-token"
+          CLOUDFLARE_API_TOKEN: "dummy-token"
           CLOUDFLARE_ACCOUNT_ID: "dummy-account"
           AUDIO_STORAGE_DIR: "/tmp/agrimemo_audio"
         run: |

@@ -140,7 +140,7 @@ export function AudioUploader() {
             
             {error && (
               <div className="mt-6 p-4 bg-terracotta/10 border border-terracotta/20 rounded-2xl text-terracotta text-sm font-bold animate-fade-in z-10 w-full max-w-lg text-center shadow-sm">
-                ⚠ {error}
+                <span className="material-symbols-outlined text-sm">report</span> {error}
               </div>
             )}
           </div>

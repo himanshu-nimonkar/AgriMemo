@@ -130,6 +130,20 @@ export function NoteDetail() {
     })
   }
 
+  const handleDownloadJson = () => {
+    if (!note) return
+    const data = activeTab === 'a' ? note.structured_schema_a : note.structured_schema_b
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `agrimemo_${note.note_id}_schema_${activeTab}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
   if (isLoading) {
     return (
       <div className="p-12 text-earth/40 font-medium text-center flex flex-col items-center justify-center min-h-[50vh]">
@@ -186,7 +200,7 @@ export function NoteDetail() {
         {isNonAgri && (
           <div className="p-5 rounded-2xl border border-amber-200 bg-amber-50 flex items-start gap-4 animate-fade-in shadow-sm">
             <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0 mt-0.5">
-              <span className="material-symbols-outlined">agriculture</span>
+              <span className="material-symbols-outlined">report</span>
             </div>
             <div>
               <h4 className="font-extrabold text-amber-800 text-sm">Non-Agricultural Content Detected</h4>
@@ -261,6 +275,14 @@ export function NoteDetail() {
             </div>
             
             <div className="lg:col-span-1 flex flex-row lg:flex-col gap-3 justify-end items-end lg:items-end lg:justify-start pt-2">
+              <button 
+                onClick={handleDownloadJson}
+                className="w-auto px-5 py-2.5 rounded-xl font-extrabold flex items-center justify-center gap-1.5 text-brand bg-brand/10 hover:bg-brand/20 transition-all border border-transparent shadow-sm hover:shadow-md active:scale-95 text-sm"
+              >
+                <span className="material-symbols-outlined text-lg">download</span>
+                JSON
+              </button>
+              
               {!confirmDelete ? (
                 <button 
                   onClick={() => setConfirmDelete(true)}

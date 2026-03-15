@@ -27,37 +27,31 @@ export function NoteFilters() {
       <div>
         <h3 className="text-xs font-bold text-earth/40 uppercase tracking-widest mb-4">Note Type</h3>
         <div className="space-y-3">
-          <label className="flex items-center gap-3 cursor-pointer group">
-            <div className="relative flex items-center justify-center w-5 h-5">
-              <input
-                type="radio"
-                name="type"
-                checked={!filters.type}
-                onChange={() => setFilters({ type: undefined, page: 1 })}
-                className="peer appearance-none w-5 h-5 border-2 border-[#e5e1d8] rounded-full checked:border-brand transition-all cursor-pointer bg-white"
-              />
-              <div className="absolute w-2.5 h-2.5 bg-brand rounded-full opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></div>
+          <div 
+            className="flex items-center gap-3 cursor-pointer group"
+            onClick={() => setFilters({ type: undefined, page: 1 })}
+          >
+            <div className="relative flex items-center justify-center w-5 h-5 pointer-events-none">
+              <div className={`w-5 h-5 border-2 rounded-full transition-all bg-white ${!filters.type ? 'border-brand' : 'border-[#e5e1d8]'}`} />
+              {!filters.type && <div className="absolute w-2.5 h-2.5 bg-brand rounded-full transition-opacity" />}
             </div>
             <span className={`text-sm font-bold transition-colors ${!filters.type ? 'text-brand' : 'text-earth/80 group-hover:text-brand'}`}>All Records</span>
-          </label>
+          </div>
           
           {NOTE_TYPES.map((t) => (
-            <label key={t} className="flex items-center gap-3 cursor-pointer group">
-              <div className="relative flex items-center justify-center w-5 h-5">
-                <input
-                  type="radio"
-                  name="type"
-                  value={t}
-                  checked={filters.type === t}
-                  onChange={(e) => setFilters({ type: e.target.value, page: 1 })}
-                  className="peer appearance-none w-5 h-5 border-2 border-[#e5e1d8] rounded-full checked:border-brand transition-all cursor-pointer bg-white"
-                />
-                <div className="absolute w-2.5 h-2.5 bg-brand rounded-full opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></div>
+            <div 
+              key={t} 
+              className="flex items-center gap-3 cursor-pointer group"
+              onClick={() => setFilters({ type: t, page: 1 })}
+            >
+              <div className="relative flex items-center justify-center w-5 h-5 pointer-events-none">
+                <div className={`w-5 h-5 border-2 rounded-full transition-all bg-white ${filters.type === t ? 'border-brand' : 'border-[#e5e1d8]'}`} />
+                {filters.type === t && <div className="absolute w-2.5 h-2.5 bg-brand rounded-full transition-opacity" />}
               </div>
               <span className={`text-sm font-bold capitalize transition-colors ${filters.type === t ? 'text-brand' : 'text-earth/80 group-hover:text-brand'}`}>
                 {t.replace('_', ' ')}
               </span>
-            </label>
+            </div>
           ))}
         </div>
       </div>
@@ -117,15 +111,15 @@ export function NoteFilters() {
             <div className="relative flex items-center justify-center w-5 h-5">
               <input
                 type="checkbox"
-                checked={filters.include_duplicates !== false}
-                onChange={(e) => setFilters({ include_duplicates: e.target.checked, page: 1 })}
+                checked={!filters.include_duplicates}
+                onChange={(e) => setFilters({ include_duplicates: !e.target.checked, page: 1 })}
                 className="peer appearance-none w-5 h-5 border-2 border-[#e5e1d8] rounded-[6px] checked:bg-brand checked:border-brand transition-all cursor-pointer bg-white"
               />
               <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <span className="text-sm text-earth/80 font-bold group-hover:text-brand transition-colors">Include duplicates</span>
+            <span className="text-sm text-earth/80 font-bold group-hover:text-brand transition-colors">Don't include duplicates</span>
           </label>
         </div>
       </div>

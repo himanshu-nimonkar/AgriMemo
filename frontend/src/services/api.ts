@@ -47,7 +47,7 @@ export async function listVoiceNotes(filters: Partial<NoteFilters> = {}): Promis
   if (filters.device_id) params.device_id = filters.device_id
   if (filters.start_date) params.start_date = filters.start_date
   if (filters.end_date) params.end_date = filters.end_date
-  if (filters.low_confidence_only) params.low_confidence_only = true
+  if (filters.high_confidence_only) params.high_confidence_only = true
   if (filters.include_duplicates !== undefined) params.include_duplicates = filters.include_duplicates
   if (filters.search) params.search = filters.search
 

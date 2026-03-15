@@ -59,7 +59,7 @@ export function getNoteTypeColor(type?: string): string {
 
 export function getNoteTypeIcon(type?: string): string {
   const icons: Record<string, string> = {
-    task: '✓',
+    task: '',
     observation: '◉',
     reminder: '◷',
     scheduling: '◫',

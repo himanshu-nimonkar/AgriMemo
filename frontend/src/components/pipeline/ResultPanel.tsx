@@ -108,7 +108,7 @@ export function ResultPanel({ note, onUploadAnother }: ResultPanelProps) {
             <div className="flex gap-2">
               {note.low_confidence && (
                 <span className="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full border border-amber-200">
-                  ⚠ Low Confidence
+                  <span className="material-symbols-outlined text-sm">report</span> Low Confidence
                 </span>
               )}
               {note.transcript_confidence !== undefined && (
@@ -148,7 +148,7 @@ export function ResultPanel({ note, onUploadAnother }: ResultPanelProps) {
 
           {note.is_duplicate && (
             <div className="mt-2 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-sm text-amber-800 font-medium flex items-start gap-3">
-              <span className="mt-0.5">⚠</span>
+              <span className="material-symbols-outlined text-sm">report</span>
               <div>
                 Duplicate submission detected.
                 {note.duplicate_of && <span className="block opacity-70 mt-1 text-xs">(Ref: {note.duplicate_of})</span>}

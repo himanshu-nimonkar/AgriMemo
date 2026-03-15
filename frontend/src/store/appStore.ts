@@ -62,9 +62,9 @@ export const useAppStore = create<AppState>((set) => ({
     set((s) => ({ upload: { ...s.upload, activeNoteId } })),
   resetUpload: () => set({ upload: { ...DEFAULT_UPLOAD } }),
 
-  filters: { page: 1, page_size: 20, include_duplicates: true },
+  filters: { page: 1, page_size: 20, include_duplicates: false },
   setFilters: (filters) =>
     set((s) => ({ filters: { ...s.filters, ...filters } })),
   resetFilters: () =>
-    set({ filters: { page: 1, page_size: 20, include_duplicates: true } }),
+    set({ filters: { page: 1, page_size: 20, include_duplicates: false } }),
 }))
