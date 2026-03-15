@@ -130,6 +130,11 @@ export function NoteCard({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
+        {note.is_duplicate && (
+          <div className="text-[9px] font-bold text-purple-700 bg-purple-50 px-2.5 py-1.5 rounded-lg logo-clay inline-flex items-center gap-1">
+            <span className="material-symbols-outlined text-[12px]">content_copy</span> Duplicate
+          </div>
+        )}
         {isNonAgri && (
           <div className="text-[9px] font-bold text-orange-700 bg-orange-50 px-2.5 py-1.5 rounded-lg logo-clay inline-flex items-center gap-1">
             <span className="material-symbols-outlined text-[12px]">agriculture</span> Non-agri
