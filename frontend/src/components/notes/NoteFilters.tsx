@@ -26,17 +26,16 @@ export function NoteFilters() {
     <div className="space-y-8">
       {/* Note Type */}
       <div>
-        <h3 className="text-xs font-bold text-earth/40 uppercase tracking-widest mb-4">Note Type</h3>
-        <div className="space-y-3">
+        <h3 className="text-[10px] font-black text-earth/40 uppercase tracking-widest mb-6">Note Type</h3>
+        <div className="space-y-4">
           <div 
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => setFilters({ type: undefined, page: 1 })}
           >
-            <div className="relative flex items-center justify-center w-5 h-5 pointer-events-none">
-              <div className={`w-5 h-5 border-2 rounded-full transition-all bg-white ${!filters.type ? 'border-brand' : 'border-[#e5e1d8]'}`} />
-              {!filters.type && <div className="absolute w-2.5 h-2.5 bg-brand rounded-full transition-opacity" />}
+            <div className={`relative flex items-center justify-center w-6 h-6 rounded-full transition-all logo-clay ${!filters.type ? 'bg-brand shadow-clay-sm' : 'bg-white'}`}>
+              {!filters.type && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
             </div>
-            <span className={`text-sm font-bold transition-colors ${!filters.type ? 'text-brand' : 'text-earth/80 group-hover:text-brand'}`}>All Records</span>
+            <span className={`text-sm font-extrabold transition-colors ${!filters.type ? 'text-brand' : 'text-earth/60 group-hover:text-brand'}`}>All Records</span>
           </div>
           
           {NOTE_TYPES.map((t) => (
@@ -45,11 +44,10 @@ export function NoteFilters() {
               className="flex items-center gap-3 cursor-pointer group"
               onClick={() => setFilters({ type: t, page: 1 })}
             >
-              <div className="relative flex items-center justify-center w-5 h-5 pointer-events-none">
-                <div className={`w-5 h-5 border-2 rounded-full transition-all bg-white ${filters.type === t ? 'border-brand' : 'border-[#e5e1d8]'}`} />
-                {filters.type === t && <div className="absolute w-2.5 h-2.5 bg-brand rounded-full transition-opacity" />}
+              <div className={`relative flex items-center justify-center w-6 h-6 rounded-full transition-all logo-clay ${filters.type === t ? 'bg-brand shadow-clay-sm' : 'bg-white'}`}>
+                {filters.type === t && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
               </div>
-              <span className={`text-sm font-bold capitalize transition-colors ${filters.type === t ? 'text-brand' : 'text-earth/80 group-hover:text-brand'}`}>
+              <span className={`text-sm font-extrabold capitalize transition-colors ${filters.type === t ? 'text-brand' : 'text-earth/60 group-hover:text-brand'}`}>
                 {t.replace('_', ' ')}
               </span>
             </div>
@@ -59,77 +57,73 @@ export function NoteFilters() {
 
       {/* Date Range */}
       <div>
-        <h3 className="text-xs font-bold text-earth/40 uppercase tracking-widest mb-4">Date Range</h3>
-        <div className="space-y-4">
-          <div>
-            <label className="text-[10px] text-earth/50 font-bold uppercase block mb-1.5">From</label>
+        <h3 className="text-[10px] font-black text-earth/40 uppercase tracking-widest mb-6">Date Range</h3>
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <label className="text-[9px] text-earth/40 font-black uppercase tracking-tighter px-1">Start Date</label>
             <input
               type="date"
               value={localStartDate}
               onChange={(e) => setLocalStartDate(e.target.value)}
-              className="w-full bg-white border border-[#e5e1d8] rounded-xl text-sm font-medium p-2.5 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none transition-all text-earth"
+              className="clay-input !py-3 !px-4 text-xs font-bold"
             />
           </div>
-          <div>
-            <label className="text-[10px] text-earth/50 font-bold uppercase block mb-1.5">To</label>
+          <div className="space-y-2">
+            <label className="text-[9px] text-earth/40 font-black uppercase tracking-tighter px-1">End Date</label>
             <input
               type="date"
               value={localEndDate}
               onChange={(e) => setLocalEndDate(e.target.value)}
-              className="w-full bg-white border border-[#e5e1d8] rounded-xl text-sm font-medium p-2.5 focus:border-brand focus:ring-2 focus:ring-brand/20 outline-none transition-all text-earth"
+              className="clay-input !py-3 !px-4 text-xs font-bold"
             />
           </div>
           <button
             onClick={applyDateRange}
             disabled={localStartDate === (filters.start_date || '') && localEndDate === (filters.end_date || '')}
-            className="w-full py-2 bg-brand text-white rounded-xl text-sm font-bold hover:bg-[#328e0f] transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="clay-button w-full py-3 text-sm font-extrabold disabled:opacity-50"
           >
-            Apply Date Range
+            Apply Range
           </button>
         </div>
       </div>
 
       {/* Attributes */}
       <div>
-        <h3 className="text-xs font-bold text-earth/40 uppercase tracking-widest mb-4">Attributes</h3>
-        <div className="space-y-3">
+        <h3 className="text-[10px] font-black text-earth/40 uppercase tracking-widest mb-6">Options</h3>
+        <div className="space-y-4">
           <label className="flex items-center gap-3 cursor-pointer group">
-            <div className="relative flex items-center justify-center w-5 h-5">
+            <div className={`w-6 h-6 rounded-lg transition-all logo-clay flex items-center justify-center ${filters.high_confidence_only ? 'bg-brand' : 'bg-white'}`}>
               <input
                 type="checkbox"
                 checked={!!filters.high_confidence_only}
                 onChange={(e) => setFilters({ high_confidence_only: e.target.checked, page: 1 })}
-                className="peer appearance-none w-5 h-5 border-2 border-[#e5e1d8] rounded-[6px] checked:bg-brand checked:border-brand transition-all cursor-pointer bg-white"
+                className="hidden"
               />
-              <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
+              {filters.high_confidence_only && <span className="material-symbols-outlined text-white text-[16px] font-black">check</span>}
             </div>
-            <span className="text-sm text-earth/80 font-bold group-hover:text-brand transition-colors">High confidence only (&gt;90%)</span>
+            <span className="text-sm text-earth/60 font-extrabold group-hover:text-brand transition-colors">High confidence</span>
           </label>
           
           <label className="flex items-center gap-3 cursor-pointer group">
-            <div className="relative flex items-center justify-center w-5 h-5">
+             <div className={`w-6 h-6 rounded-lg transition-all logo-clay flex items-center justify-center ${!filters.include_duplicates ? 'bg-brand' : 'bg-white'}`}>
               <input
                 type="checkbox"
                 checked={!filters.include_duplicates}
                 onChange={(e) => setFilters({ include_duplicates: !e.target.checked, page: 1 })}
-                className="peer appearance-none w-5 h-5 border-2 border-[#e5e1d8] rounded-[6px] checked:bg-brand checked:border-brand transition-all cursor-pointer bg-white"
+                className="hidden"
               />
-              <svg className="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
+              {!filters.include_duplicates && <span className="material-symbols-outlined text-white text-[16px] font-black">check</span>}
             </div>
-            <span className="text-sm text-earth/80 font-bold group-hover:text-brand transition-colors">Don't include duplicates</span>
+            <span className="text-sm text-earth/60 font-extrabold group-hover:text-brand transition-colors">No duplicates</span>
           </label>
         </div>
       </div>
 
       <button
         onClick={resetFilters}
-        className="w-full py-3 text-sm font-extrabold text-earth/50 border-2 border-transparent hover:text-earth/80 bg-[#f2f0eb] hover:bg-[#e5e1d8] rounded-xl transition-all"
+        className="clay-button-secondary w-full py-4 text-xs font-black uppercase tracking-widest"
       >
-        Clear All Filters
+        Reset All
       </button>
     </div>
   )

@@ -64,24 +64,19 @@ export function AudioUploader() {
           </p>
         </div>
 
-        <section className="clay-card p-4 md:p-6 rounded-[40px]" data-purpose="main-upload-area">
+        <section className="clay-card p-6 md:p-8" data-purpose="main-upload-area">
           <div
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             onClick={() => !selectedFile && fileInputRef.current?.click()}
-            className={`clay-drop-zone rounded-[32px] py-16 md:py-20 px-6 md:px-10 flex flex-col items-center justify-center cursor-pointer group relative overflow-hidden transition-all duration-400 ease-in-out ${
-               isDragging ? 'drag-active bg-[#b8cc9f] border-brand' : 'bg-stone border-[3px] border-dashed border-sage'
+            className={`clay-drop-zone py-16 md:py-20 px-6 md:px-10 flex flex-col items-center justify-center cursor-pointer group relative overflow-hidden transition-all duration-400 ease-in-out ${
+               isDragging ? 'drag-active' : ''
             } ${!selectedFile ? 'animate-breathing' : ''}`}
-            style={{
-               boxShadow: 'inset 8px 8px 16px rgba(0, 0, 0, 0.04), inset -8px -8px 16px rgba(255, 255, 255, 0.6)'
-            }}
           >
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8 shadow-md group-hover:scale-110 transition-transform duration-500 logo-clay z-10"
-                 style={{ boxShadow: 'inset -2px -2px 4px rgba(0, 0, 0, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.4)' }}
-            >
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8 logo-clay z-10">
               {isUploading ? (
                 <span className="material-symbols-outlined text-brand text-5xl animate-spin">sync</span>
               ) : selectedFile ? (
@@ -119,8 +114,7 @@ export function AudioUploader() {
                   <button
                     onClick={(e) => { e.stopPropagation(); handleProcessClick() }}
                     disabled={isUploading}
-                    className="clay-button px-10 py-5 rounded-2xl font-extrabold text-xl flex items-center justify-center gap-3 w-full md:w-auto disabled:opacity-70 disabled:cursor-not-allowed text-white bg-brand transition-all hover:-translate-y-0.5"
-                    style={{boxShadow: '6px 6px 12px rgba(0, 0, 0, 0.1), inset -4px -4px 8px rgba(0, 0, 0, 0.2), inset 4px 4px 8px rgba(255, 255, 255, 0.3)'}}
+                    className="clay-button px-10 py-5 font-extrabold text-xl w-full md:w-auto disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isUploading ? (
                       <>
@@ -135,7 +129,7 @@ export function AudioUploader() {
                   <button
                     onClick={(e) => { e.stopPropagation(); reset(); fileInputRef.current?.click() }}
                     disabled={isUploading}
-                    className="px-6 py-5 text-earth/60 bg-white/60 hover:bg-white rounded-2xl font-bold transition-all text-sm w-full md:w-auto disabled:opacity-50 btn-active-scale"
+                    className="clay-button-secondary px-6 py-5 rounded-2xl font-bold transition-all text-sm w-full md:w-auto disabled:opacity-50"
                   >
                     Change file
                   </button>
@@ -143,8 +137,7 @@ export function AudioUploader() {
               ) : (
                 <button
                   onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click() }}
-                  className="clay-button px-10 py-5 rounded-2xl font-extrabold text-xl flex items-center justify-center gap-3 w-full md:w-auto text-white bg-brand transition-all hover:-translate-y-0.5"
-                  style={{boxShadow: '6px 6px 12px rgba(0, 0, 0, 0.1), inset -4px -4px 8px rgba(0, 0, 0, 0.2), inset 4px 4px 8px rgba(255, 255, 255, 0.3)'}}
+                  className="clay-button px-10 py-5 font-extrabold text-xl w-full md:w-auto"
                 >
                   <span className="material-symbols-outlined">add_circle</span>
                   Select Audio File
@@ -159,7 +152,7 @@ export function AudioUploader() {
             )}
           </div>
 
-          <div className="mt-8 flex flex-col md:flex-row gap-4 items-center clay-card p-6 rounded-3xl bg-white/40">
+          <div className="mt-8 flex flex-col md:flex-row gap-4 items-center clay-card-light p-6">
             <div className="flex-grow w-full relative">
               <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-earth/30">link</span>
               <input
@@ -167,13 +160,13 @@ export function AudioUploader() {
                 placeholder="Or paste an audio URL here..."
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border-2 border-transparent focus:border-brand/30 outline-none font-medium text-earth transition-all shadow-sm"
+                className="clay-input pl-12"
               />
             </div>
             <button
               onClick={() => { processUrlUpload(url); setUrl('') }}
               disabled={!url || isUploading}
-              className="px-8 py-4 bg-brand text-white rounded-2xl font-extrabold flex items-center gap-2 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100 whitespace-nowrap btn-active-scale"
+              className="clay-button px-8 py-4 font-extrabold whitespace-nowrap"
             >
               <span className="material-symbols-outlined">rocket_launch</span>
               Process URL

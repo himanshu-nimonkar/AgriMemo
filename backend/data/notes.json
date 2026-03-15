@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "2026-03-15T19:34:57.690621+00:00",
+  "last_updated": "2026-03-15T19:51:08.603116+00:00",
   "notes": {
     "2388cd1d-e96a-4819-9367-42ccbaf4d701": {
       "id": "2388cd1d-e96a-4819-9367-42ccbaf4d701",
@@ -172,6 +172,124 @@
       "is_duplicate": false,
       "duplicate_of": null,
       "pipeline_duration_ms": 10228,
+      "errors": []
+    },
+    "23ea6815-0a68-411c-9d96-1f5c2fd559e2": {
+      "id": "23ea6815-0a68-411c-9d96-1f5c2fd559e2",
+      "device_id": "web-app",
+      "timestamp": "2026-03-15T19:37:18.410000Z",
+      "created_at": "2026-03-15T19:37:18.495506Z",
+      "lat": 38.54544365981299,
+      "lng": -121.76320160675017,
+      "audio_filename": "405_Orchard_Park_Dr__Apt_405.mp3",
+      "audio_format": "mp3",
+      "audio_duration_seconds": 45.744,
+      "transcript": "I am currently at the North Orchard checking the apple trees. It looks like we have a minor aphid infestation starting on the lower branches of Row 12. I'd like to schedule a spraying for tomorrow morning, preferably before 10AM, using organic pesticides from the shed. Also a reminder for the maintenance team that tractor number four has a slight hydraulic leak in the left arm. We need to get this fixed before the harvest starts next Monday. Please order a new seal jet if we don't have one in stock. Also, observation from the South Field, soil moisture levels are looking great after the rain last night, about 75%. Let's disable the automatic irrigation for the next forty eight hours to save on water usage.",
+      "transcript_confidence": 0.9992532,
+      "low_confidence": false,
+      "transcription_attempts": 1,
+      "transcription_error": null,
+      "structured_schema_a": {
+        "type": "task",
+        "title": "Spray organic pesticides on Row 12",
+        "description": null,
+        "context": "North Orchard, minor aphid infestation",
+        "scheduled_time": "2024-03-16T09:00:00Z",
+        "due_date": null,
+        "assignee": null,
+        "priority": "high",
+        "location": "North Orchard",
+        "tags": [
+          "pesticide",
+          "spraying",
+          "Row 12"
+        ]
+      },
+      "structured_schema_b": {
+        "type": "field_inspection",
+        "agri_relevant": true,
+        "rejection_reason": null,
+        "entities": {
+          "location": [
+            "North Orchard",
+            "Row 12",
+            "South Field"
+          ],
+          "equipment": [
+            "tractor number four"
+          ],
+          "crops": [
+            "apple trees"
+          ],
+          "people": [],
+          "times": [
+            "tomorrow morning",
+            "before 10AM",
+            "next Monday"
+          ],
+          "materials": [
+            "organic pesticides",
+            "seal jet"
+          ]
+        },
+        "intent": {
+          "action": [
+            "schedule spraying",
+            "disable automatic irrigation"
+          ],
+          "observation": [
+            "minor aphid infestation",
+            "soil moisture levels looking great"
+          ]
+        },
+        "urgency": "high",
+        "confidence": 0.9,
+        "equipment_issue": "hydraulic leak in the left arm",
+        "equipment_repair": "order a new seal jet",
+        "field_work": "check the apple trees",
+        "pesticide": "organic pesticides",
+        "irrigation": "disable automatic irrigation for 48 hours"
+      },
+      "note_type": "task",
+      "status": "stored",
+      "is_duplicate": true,
+      "duplicate_of": "efb24d61-5cb2-484a-8ddc-33f6654dd0bc",
+      "pipeline_duration_ms": 11010,
+      "errors": []
+    },
+    "bad26160-8ad0-475d-b36b-d2bb61ceba59": {
+      "id": "bad26160-8ad0-475d-b36b-d2bb61ceba59",
+      "device_id": "web-app",
+      "timestamp": "2026-03-15T19:50:56.412000Z",
+      "created_at": "2026-03-15T19:51:01.348211Z",
+      "lat": 38.54545287122147,
+      "lng": -121.76306330366805,
+      "audio_filename": "download_bad26160.mp3",
+      "audio_format": "mp3",
+      "audio_duration_seconds": 372.71506,
+      "transcript": "",
+      "transcript_confidence": 0.0,
+      "low_confidence": true,
+      "transcription_attempts": 1,
+      "transcription_error": null,
+      "structured_schema_a": {
+        "type": "note",
+        "content": ""
+      },
+      "structured_schema_b": {
+        "type": "empty_note",
+        "agri_relevant": false,
+        "rejection_reason": "no agricultural content",
+        "entities": {},
+        "intent": null,
+        "urgency": null,
+        "confidence": 0.0
+      },
+      "note_type": "note",
+      "status": "stored",
+      "is_duplicate": false,
+      "duplicate_of": null,
+      "pipeline_duration_ms": 7254,
       "errors": []
     }
   }

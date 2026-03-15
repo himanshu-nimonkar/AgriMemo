@@ -82,15 +82,19 @@ export function NotesList() {
   return (
     <div className="flex-grow flex p-6 lg:p-8 animate-slide-up w-full">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-72 pr-8 border-r border-[#e5e1d8] overflow-y-auto">
+      <aside className="hidden lg:flex flex-col w-72 pr-8 border-r border-[#e5e1d8]/30 overflow-y-auto">
         <div className="mb-8">
            <h2 className="text-2xl font-extrabold text-[#2d3a23] mb-2 flex items-center gap-2">
-             <span className="material-symbols-outlined">filter_alt</span>
+             <div className="w-10 h-10 rounded-xl bg-brand-muted flex items-center justify-center text-brand logo-clay">
+               <span className="material-symbols-outlined">filter_alt</span>
+             </div>
              Filters
            </h2>
            <p className="text-earth/60 text-sm font-medium">Refine your field records.</p>
         </div>
-        <NoteFilters />
+        <div className="clay-card-light p-6">
+          <NoteFilters />
+        </div>
       </aside>
 
       {/* Mobile Filter Drawer */}
@@ -124,7 +128,7 @@ export function NotesList() {
             {/* Mobile Filter Toggle */}
             <button 
               onClick={() => setIsFiltersOpen(true)}
-              className="lg:hidden flex items-center gap-2 px-4 py-2 bg-white border border-[#e5e1d8] rounded-xl text-sm font-bold text-earth hover:bg-brand-muted hover:text-brand transition-all shadow-sm"
+              className="lg:hidden flex items-center gap-2 px-6 py-3 clay-button-secondary text-sm font-extrabold"
             >
               <span className="material-symbols-outlined text-[20px]">filter_list</span>
               Filters
@@ -133,11 +137,11 @@ export function NotesList() {
 
           <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
             {/* Batch Actions Placement: Left of Search */}
-            <div className={`flex items-center gap-2 p-1.5 bg-white border border-[#e5e1d8] rounded-xl transition-all ${selectedIds.length > 0 ? 'shadow-md border-brand/30' : 'opacity-60 grayscale'}`}>
+            <div className={`flex items-center gap-2 p-1.5 clay-card-light transition-all ${selectedIds.length > 0 ? 'ring-2 ring-brand/20 opacity-100' : 'opacity-60 grayscale'}`}>
               <button
                 disabled={selectedIds.length === 0}
                 onClick={handleBatchDownload}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-brand/10 text-brand disabled:opacity-40 disabled:hover:bg-transparent transition-all"
+                className="w-10 h-10 flex items-center justify-center rounded-xl bg-white logo-clay text-brand disabled:opacity-40 transition-all active:scale-90"
                 title="Download selected"
               >
                 <span className="material-symbols-outlined text-[20px]">download</span>
@@ -145,17 +149,17 @@ export function NotesList() {
               <button
                 disabled={selectedIds.length === 0}
                 onClick={handleBatchDelete}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-terracotta/10 text-terracotta disabled:opacity-40 disabled:hover:bg-transparent transition-all"
+                className="w-10 h-10 flex items-center justify-center rounded-xl bg-white logo-clay text-terracotta disabled:opacity-40 transition-all active:scale-90"
                 title="Delete selected"
               >
                 <span className="material-symbols-outlined text-[20px]">delete</span>
               </button>
               {selectedIds.length > 0 && (
                 <>
-                  <div className="w-px h-6 bg-[#e5e1d8] mx-1" />
+                  <div className="w-px h-6 bg-[#e5e1d8]/40 mx-1" />
                   <button 
                     onClick={() => setSelectedIds([])}
-                    className="px-3 py-1.5 text-[10px] font-black uppercase text-earth/40 hover:text-earth transition-colors"
+                    className="px-3 py-1.5 text-[10px] font-black uppercase text-earth/40 hover:text-earth transition-colors btn-active-scale"
                   >
                     Clear ({selectedIds.length})
                   </button>
@@ -163,8 +167,8 @@ export function NotesList() {
               )}
             </div>
 
-            <div className="relative w-full md:w-80">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-earth/40 z-10 flex">
+            <div className="relative w-full md:w-80 group">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-earth/40 z-10 flex">
                 <span className="material-symbols-outlined text-[20px]">search</span>
               </span>
               <input
@@ -172,7 +176,7 @@ export function NotesList() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search transcripts..."
-                className="w-full pl-10 pr-4 py-3 bg-white border border-[#e5e1d8] rounded-xl text-sm font-bold focus:border-brand focus:ring-2 focus:ring-brand-light outline-none transition-all placeholder-earth/40 text-earth shadow-sm h-[48px]"
+                className="clay-input pl-12 h-[52px] group-hover:bg-white transition-all"
               />
             </div>
           </div>
@@ -235,20 +239,20 @@ export function NotesList() {
                    <div className="text-xs font-bold text-earth/50 uppercase tracking-widest">
                      {Math.min((data.page - 1) * data.page_size + 1, data.total)}-{Math.min(data.page * data.page_size, data.total)} of {data.total}
                    </div>
-                   <div className="flex items-center gap-2">
+                   <div className="flex items-center gap-3">
                      <button
                        disabled={!data.has_prev}
                        onClick={() => setFilters({ page: (filters.page ?? 1) - 1 })}
-                       className="w-10 h-10 flex items-center justify-center rounded-xl border border-[#e5e1d8] bg-white text-earth/60 hover:border-brand hover:text-brand disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm group"
+                       className="w-12 h-12 flex items-center justify-center clay-button-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                      >
-                       <span className="material-symbols-outlined text-[20px] group-hover:-translate-x-0.5 transition-transform">chevron_left</span>
+                       <span className="material-symbols-outlined text-[22px]">chevron_left</span>
                      </button>
                      <button
                        disabled={!data.has_next}
                        onClick={() => setFilters({ page: (filters.page ?? 1) + 1 })}
-                       className="w-10 h-10 flex items-center justify-center rounded-xl border border-[#e5e1d8] bg-white text-earth/60 hover:border-brand hover:text-brand disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm group"
+                       className="w-12 h-12 flex items-center justify-center clay-button-secondary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                      >
-                       <span className="material-symbols-outlined text-[20px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                       <span className="material-symbols-outlined text-[22px]">chevron_right</span>
                      </button>
                    </div>
                 </div>
