@@ -10,8 +10,15 @@ function AudioPlayer({ noteId }: { noteId: string }) {
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [audioError, setAudioError] = useState<string | null>(null)
+  const [playbackRate, setPlaybackRate] = useState(1)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioUrl = `${API_BASE}/voice-notes/${noteId}/audio`
+
+  const handleRateChange = () => {
+    const nextRate = playbackRate === 1 ? 1.5 : playbackRate === 1.5 ? 2 : 1
+    if (audioRef.current) audioRef.current.playbackRate = nextRate
+    setPlaybackRate(nextRate)
+  }
 
   const togglePlay = () => {
     const a = audioRef.current
@@ -86,10 +93,13 @@ function AudioPlayer({ noteId }: { noteId: string }) {
             className="w-full h-1.5 rounded-full accent-brand cursor-pointer"
             style={{ background: `linear-gradient(to right, #3eaa13 ${duration ? (progress/duration)*100 : 0}%, #e5e1d8 0%)` }}
           />
-          <div className="flex justify-between mt-1.5 text-[10px] font-bold text-earth/50">
-            <span>{fmt(progress)}</span>
-            <span>{fmt(duration)}</span>
-          </div>
+          <button
+            onClick={handleRateChange}
+            className="px-2 py-1 rounded bg-stone-warm text-[10px] font-black text-earth/60 hover:text-brand transition-all border border-[#e5e1d8]"
+            title="Toggle playback speed"
+          >
+            {playbackRate}x
+          </button>
         </div>
         <a
           href={audioUrl}
@@ -270,19 +280,22 @@ export function NoteDetail() {
                     <span className="material-symbols-outlined text-sm">devices</span>
                     {note.device_id}
                   </span>
+                  {note.lat && note.lng && (
+                    <a 
+                      href={`https://www.google.com/maps?q=${note.lat},${note.lng}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-brand hover:underline"
+                    >
+                      <span className="material-symbols-outlined text-sm">location_on</span>
+                      View Location
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
             
             <div className="lg:col-span-1 flex flex-row lg:flex-col gap-3 justify-end items-end lg:items-end lg:justify-start pt-2">
-              <button 
-                onClick={handleDownloadJson}
-                className="w-auto px-5 py-2.5 rounded-xl font-extrabold flex items-center justify-center gap-1.5 text-brand bg-brand/10 hover:bg-brand/20 transition-all border border-transparent shadow-sm hover:shadow-md active:scale-95 text-sm"
-              >
-                <span className="material-symbols-outlined text-lg">download</span>
-                JSON
-              </button>
-              
               {!confirmDelete ? (
                 <button 
                   onClick={() => setConfirmDelete(true)}
@@ -420,13 +433,22 @@ export function NoteDetail() {
                        : 'Flexible JSON with all detected contexts.'}
                    </p>
                 </div>
-                <button 
-                  onClick={handleCopy}
-                  className="w-10 h-10 rounded-full bg-stone-warm hover:bg-stone-border flex items-center justify-center text-earth/60 transition-all hover:scale-110 active:scale-95"
-                  title="Copy JSON"
-                >
-                  <span className="material-symbols-outlined text-[20px]">{copied ? 'check' : 'content_copy'}</span>
-                </button>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={handleDownloadJson}
+                    className="w-10 h-10 rounded-full bg-brand/10 hover:bg-brand/20 text-brand flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+                    title={`Download Schema ${activeTab.toUpperCase()} JSON`}
+                  >
+                    <span className="material-symbols-outlined text-[20px]">download</span>
+                  </button>
+                  <button 
+                    onClick={handleCopy}
+                    className="w-10 h-10 rounded-full bg-stone-warm hover:bg-stone-border flex items-center justify-center text-earth/60 transition-all hover:scale-110 active:scale-95"
+                    title="Copy JSON"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">{copied ? 'check' : 'content_copy'}</span>
+                  </button>
+                </div>
               </div>
               
               <div className="bg-[#2d3a23] rounded-2xl p-6 overflow-auto flex-grow relative inner-soft-glow custom-scroll min-h-[300px]">

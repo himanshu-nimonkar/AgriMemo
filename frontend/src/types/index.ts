@@ -50,6 +50,8 @@ export interface FullNoteResponse {
   created_at: string
   audio_filename: string
   audio_duration_seconds?: number
+  lat?: number
+  lng?: number
   transcript?: string
   transcript_confidence?: number
   low_confidence: boolean

@@ -14,6 +14,8 @@ class VoiceNote(BaseModel):
     device_id: str
     timestamp: datetime  # Provided by client in upload request
     created_at: datetime  # Server time when processing began
+    lat: Optional[float] = None
+    lng: Optional[float] = None
 
     # ── Audio metadata ─────────────────────────────────────────────────────────
     audio_filename: str  # Sanitized filename of the uploaded file

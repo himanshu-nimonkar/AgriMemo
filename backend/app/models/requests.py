@@ -11,6 +11,8 @@ from pydantic import BaseModel, field_validator
 class VoiceNoteUploadRequest(BaseModel):
     device_id: str
     timestamp: Optional[datetime] = None  # If omitted, server uses utcnow()
+    lat: Optional[float] = None
+    lng: Optional[float] = None
 
     @field_validator("device_id")
     @classmethod

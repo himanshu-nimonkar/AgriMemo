@@ -5,9 +5,19 @@ interface NoteCardProps {
   note: FullNoteResponse
   onClick: () => void
   animationDelay?: number
+  selectable?: boolean
+  isSelected?: boolean
+  onSelect?: (e: React.MouseEvent) => void
 }
 
-export function NoteCard({ note, onClick, animationDelay = 0 }: NoteCardProps) {
+export function NoteCard({ 
+  note, 
+  onClick, 
+  animationDelay = 0,
+  selectable = false,
+  isSelected = false,
+  onSelect
+}: NoteCardProps) {
   const typeColor = getNoteTypeColor(note.note_type || '')
   const confidence = note.transcript_confidence
   const schemaB = note.structured_schema_b as Record<string, unknown> | null
@@ -46,9 +56,23 @@ export function NoteCard({ note, onClick, animationDelay = 0 }: NoteCardProps) {
   return (
     <article
       onClick={onClick}
-      className={`clay-card-light bg-white rounded-3xl p-6 cursor-pointer group flex flex-col h-full hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md border border-stone-border hover:border-brand/30 animate-slide-up`}
+      className={`clay-card-light bg-white rounded-3xl p-6 cursor-pointer group flex flex-col h-full hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md border-2 animate-slide-up ${
+        isSelected ? 'border-brand ring-2 ring-brand-light bg-brand-muted/10' : 'border-stone-border hover:border-brand/30'
+      }`}
       style={{ animationDelay: `${animationDelay}ms` }}
     >
+      {selectable && (
+        <div 
+          onClick={onSelect}
+          className="absolute -top-3 -right-3 w-8 h-8 rounded-full border-2 border-white shadow-md z-[60] flex items-center justify-center transition-all bg-white group-hover:scale-110"
+        >
+          <div className={`w-5 h-5 rounded-md border-2 transition-all flex items-center justify-center ${
+            isSelected ? 'bg-brand border-brand' : 'bg-white border-[#e5e1d8]'
+          }`}>
+            {isSelected && <span className="material-symbols-outlined text-white text-[16px] font-black">check</span>}
+          </div>
+        </div>
+      )}
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-[12px] bg-brand-muted flex items-center justify-center text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300 shadow-sm font-bold">

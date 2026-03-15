@@ -13,6 +13,8 @@ class FullNoteResponse(BaseModel):
     timestamp: datetime
     created_at: datetime
     audio_filename: str
+    lat: Optional[float] = None
+    lng: Optional[float] = None
     audio_duration_seconds: Optional[float] = None
     transcript: Optional[str] = None
     transcript_confidence: Optional[float] = None

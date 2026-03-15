@@ -25,12 +25,16 @@ export const api = axios.create({
 export async function uploadVoiceNote(
   file: File,
   deviceId: string,
-  timestamp?: string
+  timestamp?: string,
+  lat?: number,
+  lng?: number
 ): Promise<FullNoteResponse> {
   const formData = new FormData()
   formData.append('file', file)
   formData.append('device_id', deviceId)
   if (timestamp) formData.append('timestamp', timestamp)
+  if (lat !== undefined) formData.append('lat', lat.toString())
+  if (lng !== undefined) formData.append('lng', lng.toString())
 
   const { data } = await api.post<FullNoteResponse>('/voice-note/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },

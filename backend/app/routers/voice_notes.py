@@ -45,6 +45,8 @@ def _note_to_response(note: VoiceNote) -> FullNoteResponse:
         timestamp=note.timestamp,
         created_at=note.created_at,
         audio_filename=note.audio_filename,
+        lat=note.lat,
+        lng=note.lng,
         audio_duration_seconds=note.audio_duration_seconds,
         transcript=note.transcript,
         transcript_confidence=note.transcript_confidence,
@@ -213,6 +215,8 @@ async def upload_voice_note(
         upload_req = VoiceNoteUploadRequest(
             device_id=device_id,
             timestamp=timestamp,
+            lat=lat,
+            lng=lng,
         )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

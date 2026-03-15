@@ -232,3 +232,99 @@
 7:10:22 AM [vite] hmr update /src/components/StatusView.tsx, /src/index.css
 7:10:26 AM [vite] hmr update /src/index.css, /src/components/notes/NoteDetail.tsx, /src/components/notes/NoteCard.tsx, /src/components/pipeline/ResultPanel.tsx
 7:10:30 AM [vite] hmr update /src/components/pipeline/ResultPanel.tsx, /src/index.css
+7:18:19 AM [vite] hmr update /src/App.tsx, /src/index.css, /src/components/layout/Layout.tsx, /src/components/notes/NotesList.tsx, /src/components/notes/NoteDetail.tsx, /src/components/notes/NoteFilters.tsx, /src/components/upload/AudioUploader.tsx
+7:18:21 AM [vite] hmr update /src/components/notes/NoteFilters.tsx, /src/index.css
+7:18:24 AM [vite] hmr update /src/components/notes/NoteDetail.tsx, /src/index.css
+7:19:19 AM [vite] hmr update /src/index.css, /src/components/StatusView.tsx, /src/components/notes/NotesList.tsx, /src/components/notes/NoteDetail.tsx, /src/components/upload/AudioUploader.tsx
+7:19:21 AM [vite] hmr update /src/index.css, /src/components/upload/AudioUploader.tsx
+7:20:25 AM [vite] hmr update /src/components/notes/NoteDetail.tsx, /src/index.css
+7:20:40 AM [vite] hmr update /src/components/notes/NoteDetail.tsx, /src/index.css
+7:20:46 AM [vite] page reload src/types/index.ts
+7:21:05 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:21:14 AM [vite] hmr update /src/components/notes/NoteCard.tsx, /src/index.css
+7:21:16 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:21:28 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:22:19 AM [vite] vite.config.ts changed, restarting server...
+Re-optimizing dependencies because lockfile has changed
+7:22:20 AM [vite] server restarted.
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://10.0.0.213:5173/
+7:22:31 AM [vite] page reload src/main.tsx
+7:22:32 AM [vite] hmr update /src/index.css, /src/components/upload/AudioUploader.tsx
+7:22:47 AM [vite] page reload src/vite-env.d.ts
+7:40:42 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:40:42 AM [vite] Internal server error: /Users/himanshunimonkar/Downloads/AgriMemo/frontend/src/components/notes/NotesList.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (253:4)
+
+  251 |         </div>
+  252 |       </div>
+> 253 |     </div>
+      |     ^
+  254 |   )
+  255 | }
+  256 |
+  Plugin: vite:react-babel
+  File: /Users/himanshunimonkar/Downloads/AgriMemo/frontend/src/components/notes/NotesList.tsx:253:4
+  251|          </div>
+  252|        </div>
+  253|      </div>
+     |      ^
+  254|    )
+  255|  }
+      at constructor (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptParserMixin.jsxParseElementAt (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:4742:18)
+      at TypeScriptParserMixin.jsxParseElement (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at /Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9775:39
+      at TypeScriptParserMixin.tryParse (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9775:18)
+      at /Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10784:23)
+      at /Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/himanshunimonkar/Downloads/AgriMemo/frontend/node_modules/@babel/parser/lib/index.js:13444:10)
+7:40:43 AM [vite] hmr update /src/components/notes/NoteCard.tsx, /src/index.css
+7:40:55 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:41:18 AM [vite] hmr update /src/components/notes/NoteDetail.tsx, /src/index.css
+7:48:47 AM [vite] hmr update /src/index.css, /src/App.tsx, /src/components/layout/Layout.tsx, /src/components/notes/NotesList.tsx, /src/components/notes/NoteDetail.tsx, /src/components/upload/AudioUploader.tsx, /src/components/notes/NoteFilters.tsx
+7:48:59 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:49:13 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
+7:53:17 AM [vite] hmr update /src/components/notes/NotesList.tsx, /src/index.css
