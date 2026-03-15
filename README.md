@@ -2,8 +2,6 @@
 
 > **Field Intelligence for the Modern Grower.** Upload field voice notes → get structured, queryable data instantly.
 
-[![CI](https://github.com/your-org/agrimemo/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/agrimemo/actions)
-
 ---
 
 ## Overview
