@@ -40,7 +40,7 @@ function JsonViewer({ data, title, description }: { data: Record<string, unknown
         </div>
         <button
           onClick={copy}
-          className="w-10 h-10 rounded-full bg-[#f2f0eb] hover:bg-[#e5e1d8] flex items-center justify-center text-earth/60 transition-colors flex-shrink-0"
+          className="w-10 h-10 rounded-full bg-[#f2f0eb] hover:bg-[#e5e1d8] flex items-center justify-center text-earth/60 transition-colors flex-shrink-0 btn-active-scale"
           title="Copy JSON"
         >
           {copied ? (
@@ -74,8 +74,8 @@ export function ResultPanel({ note, onUploadAnother }: ResultPanelProps) {
 
   const tabClass = (tab: 'a' | 'b') =>
     tab === activeTab
-      ? 'bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-clay-sm flex items-center gap-2 outline-none'
-      : 'bg-transparent text-earth/60 hover:text-earth px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-transparent hover:border-[#e5e1d8] hover:bg-white outline-none'
+      ? 'bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-clay-sm flex items-center gap-2 outline-none btn-active-scale'
+      : 'bg-transparent text-earth/60 hover:text-earth px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-transparent hover:border-[#e5e1d8] hover:bg-white outline-none btn-active-scale'
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 animate-slide-up pb-12">

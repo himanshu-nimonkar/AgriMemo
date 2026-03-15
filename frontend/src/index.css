@@ -68,8 +68,13 @@
   }
 
   .clay-button:active {
-    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px);
+    box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(2px) scale(0.96);
+  }
+
+  .btn-active-scale:active {
+    transform: scale(0.96) translateY(1px);
+    transition: transform 0.1s ease;
   }
 
   .clay-drop-zone {

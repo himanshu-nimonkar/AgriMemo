@@ -135,7 +135,7 @@ export function AudioUploader() {
                   <button
                     onClick={(e) => { e.stopPropagation(); reset(); fileInputRef.current?.click() }}
                     disabled={isUploading}
-                    className="px-6 py-5 text-earth/60 bg-white/60 hover:bg-white rounded-2xl font-bold transition-all text-sm w-full md:w-auto disabled:opacity-50"
+                    className="px-6 py-5 text-earth/60 bg-white/60 hover:bg-white rounded-2xl font-bold transition-all text-sm w-full md:w-auto disabled:opacity-50 btn-active-scale"
                   >
                     Change file
                   </button>
@@ -173,7 +173,7 @@ export function AudioUploader() {
             <button
               onClick={() => { processUrlUpload(url); setUrl('') }}
               disabled={!url || isUploading}
-              className="px-8 py-4 bg-brand text-white rounded-2xl font-extrabold flex items-center gap-2 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100 whitespace-nowrap"
+              className="px-8 py-4 bg-brand text-white rounded-2xl font-extrabold flex items-center gap-2 hover:scale-105 transition-all disabled:opacity-50 disabled:scale-100 whitespace-nowrap btn-active-scale"
             >
               <span className="material-symbols-outlined">rocket_launch</span>
               Process URL
