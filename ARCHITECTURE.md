@@ -7,7 +7,7 @@ AgriMemo uses an **asynchronous-by-design** pipeline to handle the inherent late
 1. **Intake**: Browser sends multipart audio + GPS metadata.
 2. **Acceptance**: Backend returns `202 Accepted` immediately, providing a `note_id`.
 3. **Background Processing**:
-    - **Step 1 (Conversion)**: Normalize audio to WAV via `pydub`.
+    - **Step 1 (Ingestion)**: Read raw audio bytes and validate format.
     - **Step 2 (STT)**: Deepgram Nova-2 with exponential backoff on transient failure.
     - **Step 3 (Extraction)**: Two parallel calls to Cloudflare Workers AI (Llama 3.1).
     - **Step 4 (Validation)**: Jaccard similarity check to flag duplicates.

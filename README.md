@@ -57,7 +57,7 @@ Audio File (upload)
 
 ```bash
 cd backend
-cp .env.example .env
+cp .env.example .env  # Add your Deepgram and Cloudflare keys
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```

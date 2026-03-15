@@ -31,7 +31,7 @@ from app.services.deepgram_service import AllRetriesExhaustedError, DeepgramAuth
 from app.services.event_logger import EventLogger, PipelineEvent
 from app.storage.composite_store import CompositeStore
 from app.utils.audio_utils import sanitize_filename
-from app.utils.security import is_valid_uuid_v4, sanitize_search_query
+from app.utils.security import is_valid_uuid_v4, sanitize_search_query, safe_join
 
 log = structlog.get_logger()
 
@@ -266,10 +266,12 @@ async def upload_voice_note(
     )
 
     # ── 9b. Persist original audio file ──────────────────────────────────────
-    audio_storage_dir = Path(settings.audio_storage_dir)
-    audio_storage_dir.mkdir(parents=True, exist_ok=True)
-    audio_stored_path = audio_storage_dir / f"{note_id}.{detected_format}"
-    audio_stored_path.write_bytes(content)
+    try:
+        audio_stored_path = safe_join(settings.audio_storage_dir, f"{note_id}.{detected_format}")
+        Path(audio_stored_path).write_bytes(content)
+    except ValueError as e:
+        log.error("secure_storage_failed", note_id=note_id, error=str(e))
+        raise HTTPException(status_code=400, detail="Invalid storage path")
 
     # ── 10. Enqueue Background Task ──────────────────────────────────────────
     background_tasks.add_task(
@@ -392,17 +394,15 @@ async def delete_voice_note(
             PipelineEvent(note_id=note_id, event_type="deleted")
         )
         # Also delete persisted audio file if it exists
-        audio_storage_dir = Path(settings.audio_storage_dir).resolve()
+        audio_storage_dir = settings.audio_storage_dir
         for ext in ["wav", "mp3", "ogg", "m4a", "flac", "webm", note.audio_format or ""]:
-            candidate = (audio_storage_dir / f"{note_id}.{ext}").resolve()
-            # Ensure the resolved path is within the configured audio storage directory
             try:
-                candidate.relative_to(audio_storage_dir)
+                candidate = safe_join(audio_storage_dir, f"{note_id}.{ext}")
+                if os.path.isfile(candidate):
+                    os.unlink(candidate)
+                    break
             except ValueError:
                 continue
-            if candidate.is_file():
-                candidate.unlink(missing_ok=True)
-                break
 
     return Response(status_code=204)
 
@@ -427,22 +427,16 @@ async def stream_voice_note_audio(
     for ext in formats_to_try:
         if not ext:
             continue
-        candidate = audio_storage_dir / f"{note_id}.{ext}"
-        if candidate.exists():
-            audio_path = candidate
-            break
+        try:
+            candidate = safe_join(settings.audio_storage_dir, f"{note_id}.{ext}")
+            if os.path.isfile(candidate):
+                audio_path = candidate
+                break
+        except ValueError:
+            continue
 
     if not audio_path:
         raise HTTPException(status_code=404, detail="Audio file not found (may have been cleaned up)")
-
-    # Normalize and validate that the audio path is within the configured storage directory
-    audio_storage_dir_resolved = audio_storage_dir.resolve()
-    resolved_audio_path = audio_path.resolve()
-    try:
-        resolved_audio_path.relative_to(audio_storage_dir_resolved)
-    except ValueError:
-        # Path escapes the configured storage directory; treat as invalid
-        raise HTTPException(status_code=400, detail="Invalid audio file path")
 
     # Map extension to MIME type
     mime_map = {
