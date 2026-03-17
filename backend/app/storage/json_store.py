@@ -20,12 +20,7 @@ log = structlog.get_logger()
 EMPTY_STORE = {"version": "1.0", "last_updated": None, "notes": {}}
 
 
-### Robust Deletion Logic
-# - **Requirement**: Ensure deleting a note removes all associated data (JSON, memory, and physical files).
-# - **Fix**:
-#     - Updated `JsonStore` to verify disk persistence before reporting success.
-#     - Updated `CompositeStore` to treat JSON persistence as the authoritative success flag.
-#     - Enhanced the deletion endpoint to scrub *all* potential audio file formats (`.wav`, `.mp3`, etc.) from the disk using `safe_join` for security.
+
 def _load_store_sync(path: str) -> dict:
     """
     Load JSON store from disk.
