@@ -213,7 +213,7 @@ export function NotesList() {
                   className="clay-button px-8 py-3 rounded-xl font-bold flex items-center gap-2"
                 >
                   <span className="material-symbols-outlined">add_circle</span>
-                  Add Your First Note
+                  Add a Note
                 </button>
               </div>
           )}

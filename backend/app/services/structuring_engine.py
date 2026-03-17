@@ -31,11 +31,12 @@ PREDEFINED_SCHEMAS: Dict[str, Dict[str, Any]] = {
     },
     "observation": {
         "type": "observation",
-        "location": "string or null",
+        "field_id": "string or null",
+        "block": "string or null",
         "crop": "string or null",
-        "subject": "string or null",
+        "subject": "string or null — e.g. pest, disease, growth stage",
         "condition": "string or null",
-        "issue": "string or null",
+        "observation": "string — detailed observation notes",
         "severity": "none | low | medium | high | critical | null",
         "recommended_action": "string or null",
         "tags": "array of strings",
@@ -58,18 +59,6 @@ PREDEFINED_SCHEMAS: Dict[str, Dict[str, Any]] = {
         "notes": "string or null",
         "tags": "array of strings",
     },
-    "field_observation": {
-        "type": "field_observation",
-        "field_id": "string or null",
-        "block": "string or null",
-        "crop": "string or null",
-        "observation": "string — what was observed",
-        "measurements": "object of key-value pairs or null",
-        "weather": "string or null",
-        "recommended_action": "string or null",
-        "severity": "none | low | medium | high | critical | null",
-        "tags": "array of strings",
-    },
     "note": {
         "type": "note",
         "title": "string or null",
@@ -90,7 +79,7 @@ irigation, equipment, soil, weather, or any related topic, still classify it —
 and set the content field to the raw transcript. Do not refuse or return an error."""
 
 SCHEMA_A_USER_TEMPLATE = """Classify this voice note into one of these types:
-task, observation, reminder, scheduling, field_observation, note
+task, observation, reminder, scheduling, note
 
 Then extract all relevant fields using the schema for that type.
 

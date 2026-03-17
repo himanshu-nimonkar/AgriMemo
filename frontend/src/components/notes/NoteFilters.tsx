@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react'
 import { useAppStore } from '../../store/appStore'
 
-const NOTE_TYPES = ['task', 'observation', 'reminder', 'scheduling', 'field_observation', 'note']
+const NOTE_TYPES = ['task', 'observation', 'reminder', 'scheduling', 'note']
 
 export function NoteFilters() {
   const { filters, setFilters, resetFilters } = useAppStore()
