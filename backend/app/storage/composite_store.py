@@ -58,13 +58,20 @@ class CompositeStore(StorageBackend):
         return note
 
     async def delete(self, note_id: str) -> bool:
-        """Delete from both stores."""
-        results = await asyncio.gather(
+        """Delete from both stores. Authoritative result comes from JSON store."""
+        # Run both, but we care most about JSON persistence
+        json_deleted, mem_deleted = await asyncio.gather(
             self.json_store.delete(note_id),
             self.memory_store.delete(note_id),
             return_exceptions=True,
         )
-        return any(r is True for r in results)
+        
+        # If JSON deletion failed (exception or False), we should probably know
+        if isinstance(json_deleted, Exception):
+            log.error("composite_delete_json_failed", error=str(json_deleted))
+            return False
+            
+        return json_deleted
 
     async def list(
         self,

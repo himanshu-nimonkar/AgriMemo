@@ -485,14 +485,18 @@ async def delete_voice_note(
         )
         # Also delete persisted audio file if it exists
         audio_storage_dir = settings.audio_storage_dir
-        for ext in ["wav", "mp3", "ogg", "m4a", "flac", "webm", note.audio_format or ""]:
+        formats = set(["wav", "mp3", "ogg", "m4a", "flac", "webm"])
+        if note.audio_format:
+            formats.add(note.audio_format)
+            
+        for ext in formats:
             try:
                 candidate = safe_join(audio_storage_dir, f"{note_id}.{ext}")
                 if os.path.isfile(candidate):
                     os.unlink(candidate)
-                    break
-            except ValueError:
-                continue
+                    log.info("audio_file_deleted", note_id=note_id, path=candidate)
+            except Exception as e:
+                log.warning("audio_file_delete_failed", note_id=note_id, ext=ext, error=str(e))
 
     return Response(status_code=204)
 

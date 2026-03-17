@@ -20,6 +20,12 @@ log = structlog.get_logger()
 EMPTY_STORE = {"version": "1.0", "last_updated": None, "notes": {}}
 
 
+### Robust Deletion Logic
+# - **Requirement**: Ensure deleting a note removes all associated data (JSON, memory, and physical files).
+# - **Fix**:
+#     - Updated `JsonStore` to verify disk persistence before reporting success.
+#     - Updated `CompositeStore` to treat JSON persistence as the authoritative success flag.
+#     - Enhanced the deletion endpoint to scrub *all* potential audio file formats (`.wav`, `.mp3`, etc.) from the disk using `safe_join` for security.
 def _load_store_sync(path: str) -> dict:
     """
     Load JSON store from disk.
@@ -98,9 +104,10 @@ class JsonStore(StorageBackend):
             self._data["last_updated"] = datetime.now(timezone.utc).isoformat()
             try:
                 await asyncio.to_thread(_atomic_write_sync, self._data, self.path)
+                return True
             except Exception as e:
                 log.error("json_store_delete_write_failed", error=str(e))
-            return True
+                return False
 
     async def list(
         self,
