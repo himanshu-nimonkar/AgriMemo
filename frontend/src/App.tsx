@@ -1,6 +1,7 @@
 /**
  * AgriMemo — Root App Component
  */
+import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Layout } from './components/layout/Layout'
 import { AudioUploader } from './components/upload/AudioUploader'
@@ -18,8 +19,26 @@ const queryClient = new QueryClient({
   },
 })
 
+
+
 function AppContent() {
-  const { view } = useAppStore()
+  const { view, setView } = useAppStore()
+
+  useEffect(() => {
+    const handleUrl = () => {
+      const path = window.location.pathname.replace(/^\/|\/$/g, '')
+      if (path === 'status') {
+        setView('status')
+      } else if (path === '') {
+        // Only reset if it was specifically trying to go home, 
+        // otherwise let store handle state
+      }
+    }
+
+    handleUrl()
+    window.addEventListener('popstate', handleUrl)
+    return () => window.removeEventListener('popstate', handleUrl)
+  }, [setView])
 
   return (
     <Layout>

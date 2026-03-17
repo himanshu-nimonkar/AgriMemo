@@ -9,7 +9,6 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { view: 'upload', label: 'Upload' },
   { view: 'history', label: 'History' },
-  { view: 'status', label: 'Status' },
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {
